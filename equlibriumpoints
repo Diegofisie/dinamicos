@@ -1,0 +1,18 @@
+from scipy.optimize import fsolve
+import math
+
+alpha = 10
+a = 0.1
+b = 0.055
+n = 1
+c = 0.025
+f = 0.025
+e = 0.018
+beta = 4
+r_1 = 0.31
+r_2 = 0.87
+r_3= 0.87
+def equations(p):
+    x, y ,z = p
+    return ((-a*x*y + r_1-x-(1-((x + beta*z)/alpha*y))),(-b*x - c*z  +r_2*y*(1 - (y/n ))),(-e*x - f*y + r_3*z*(1 - (z/y))))
+x,y,z = fsolve(equations,(1,1,1))

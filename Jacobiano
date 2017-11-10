@@ -1,0 +1,31 @@
+#Para encontrar la matriz jacobiana, primero se realizan los imports necesarios
+-----------------------------------------------------------------------------------------
+import math
+import sympy as sp
+from sympy import *
+import numpy as np
+from sympy import Symbol
+from scipy.optimize import fsolve
+from scipy import linalg
+
+#se declaran las variables simbólicas, los valores de las constantes y las funciones.
+-----------------------------------------------------------------------------------------
+x,y,z=sp.symbols('x,y,z', real=True)
+alpha = 10, a = 0.1, b = 0.055 ,n = 1, c = 0.025
+f = 0.025, e = 0.018, beta = 4, r_1 = 0.31
+r_2 = 0.87, r_3= 0.87
+f1=(-a*x*y + r_1*x*(1-((x + beta*z)/alpha*y)))
+f2=(-b*x - c*z  +r_2*y*(1 - (y/n )))
+f3=(-e*x - f*y + r_3*z*(1 - (z/y)))
+-----------------------------------------------------------------------------------------
+#FInalmente se usa la funcion de Sympy. Jacobian, la cual calcula el jacobiano de las funciones.
+F = sp.Matrix([f1,f2,f3])
+F.jacobian([x,y,z])
+#se obtiene lo siguiente.
+-----------------------------------------------------------------------------------------
+Matrix([-0.031*x*y - 0.31*y*(x/10 + 2*z/5) - 0.1*y + 0.31, 0.31*x*(-x/10 - 2*z/5) - 0.1*x,      -0.124*x*y],
+[                                           -0.055,                 -1.74*y + 0.87,          -0.025],
+[                                           -0.018,        -0.025 + 0.87*z**2/y**2, 0.87 - 1.74*z/y]])
+Esta es la matriz jacobiana
+-----------------------------------------------------------------------------------------
+

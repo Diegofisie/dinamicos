@@ -1,0 +1,32 @@
+#se Impotan las librerias necesarias para la realizacion del proyecto.
+---------------------------------------------------------------------------------
+import math
+from sympy.solvers import solve
+from sympy import Symbol
+from scipy.optimize import fsolve
+---------------------------------------------------------------------------------
+#Se definen las ecuaciones que se busca resolver.
+---------------------------------------------------------------------------------
+def equations(p):
+    x, y ,z = p
+    return (- (31*x*((x + 4*z)/(10*y) - 1))/100 - (x*y)/10,
+            - (11*x)/200 - z/40 - (87*y*(y - 1))/100,
+            - (9*x)/500 - y/40 - (87*z*(z/y - 1))/100)
+ ---------------------------------------------------------------------------------
+#Ahora, utilizando el comando fsolve de la libreria de scipy se encuentras los 4 puntos de equilibrio
+x,y,z = fsolve(equations,(1,1,0))
+print(x,y,z)
+x,y,z = fsolve(equations,(1,1,1))
+print(x,y,z)
+x,y,z = fsolve(equations,(1,1,1))
+print(x,y,z)
+x,y,z = fsolve(equations,(3,0.5,0))
+print(x,y,z)
+
+Para la solución de estas ecuaciones, el comando fsolve tiene como parámetro las ecuaciones y aproximaciones a los valores. 
+Realizando esto se obtuvieron los siguientes puntos de equilibrio.
+[5.60572398274e-10,  0.99914906507,  0.0295873359967]
+[-1.48533862399e-09,  0.972115302842,  0.943328504981]
+[3.00920576356,  0.705505197776,  0.610060275934]
+[3.88457735222, 0.528722515662,  0.125220419997]
+
